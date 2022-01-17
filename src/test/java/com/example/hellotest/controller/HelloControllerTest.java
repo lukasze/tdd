@@ -46,7 +46,7 @@ class HelloControllerTest {
     @SneakyThrows
     void helloWithName() {
         final var mvcResult = mockMvc
-                // wyślij żądanie POST /hello
+                // wyślij żądanie GET /hello
                 .perform(get("/hello?name=Lukasz"))
                 // lepsze logowanie
                 .andDo(print())
