@@ -61,15 +61,28 @@ class HelloControllerTest {
 
         // then
         assertAll("Nie tak łatwo o dobry opis :)",
-                () -> assertEquals("Hello, Lukasz", response.getMessage()),
+                () -> assertEquals("Hello, Lukasz!", response.getMessage()),
                 () -> assertEquals("Hello Service", response.getService())
         );
     }
 
     @Test
     @DisplayName("GET /hello -> HTTP 200, Hello, World!")
+    @SneakyThrows
     void helloWithoutName() {
-        fail();
+        final var mvcResult = mockMvc
+                .perform(get("/hello"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andReturn();
+
+        final var json = mvcResult.getResponse().getContentAsString();
+        final var response = objectMapper.readValue(json, Response.class);
+
+        assertAll("Nie tak łatwo o dobry opis :)",
+                () -> assertEquals("Hello, World!", response.getMessage()),
+                () -> assertEquals("Hello Service", response.getService())
+        );
     }
 // scenariusze z problemami
 
@@ -89,9 +102,22 @@ class HelloControllerTest {
     }
 
     @Test
-    @DisplayName("GET /hello -> HTTP 200, Hello, World!")
+    @DisplayName("GET /hello?name -> HTTP 200, Hello, World!")
+    @SneakyThrows
     void helloWithNameAndNoValue() {
-        fail();
+        final var mvcResult = mockMvc
+                .perform(get("/hello?name"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andReturn();
+
+        final var json = mvcResult.getResponse().getContentAsString();
+        final var response = objectMapper.readValue(json, Response.class);
+
+        assertAll("Nie tak łatwo o dobry opis :)",
+                () -> assertEquals("Hello, World!", response.getMessage()),
+                () -> assertEquals("Hello Service", response.getService())
+        );
     }
 
     @Test
