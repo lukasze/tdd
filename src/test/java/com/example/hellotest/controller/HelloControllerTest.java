@@ -29,6 +29,11 @@ class HelloControllerTest {
     @Autowired
     // Biblioteka do testowania endpoint'ów aplikacji
     private MockMvc mockMvc;
+    /*
+        Używamy @Autowired a nie new ObjectMapper będzie miał zainicjalizowane więcej opcji
+        np. możemy zmapować pole LocalDateTime
+     */
+
     @Autowired
     // Mapujemy JSON <-> Java
     private ObjectMapper objectMapper;
