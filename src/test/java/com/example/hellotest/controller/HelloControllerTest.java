@@ -10,26 +10,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class HelloControllerTest {
 
     @Test
-    @DisplayName("GET /hello?name=Lukasz -> 200")
+    @DisplayName("GET /hello?name=Lukasz -> HTTP 200, Hello, Lukasz!")
     void helloWithName() {
         fail();
     }
 
     @Test
-    @DisplayName("GET /hello -> 200")
+    @DisplayName("GET /hello -> HTTP 200, Hello, World!")
     void helloWithoutName() {
         fail();
     }
 // scenariusze z problemami
 
     @Test
-    @DisplayName("POST /hello -> 401")
+    @DisplayName("POST /hello -> 405")
     void helloUsingPOST() {
         fail();
     }
 
     @Test
-    @DisplayName("GET /hello?name -> ?")
+    @DisplayName("GET /hello -> HTTP 200, Hello, World!")
     void helloWithNameAndNoValue() {
         fail();
     }
